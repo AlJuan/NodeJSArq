@@ -1,6 +1,8 @@
-function Cuatrimestre(semestre, anio) {
-  this.semestre = semestre;
-  this.anio = anio;
-}
+var mongoose = require('mongoose');
 
-module.exports = Cuatrimestre;
+var schema = mongoose.Schema({
+  semestre: Number,
+  anio: Number
+});
+
+mongoose.model('Cuatrimestre', schema);

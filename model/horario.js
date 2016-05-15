@@ -1,6 +1,8 @@
-function Horario(dia, hora) {
-  this.dia = dia;
-  this.hora = hora;
-}
+var mongoose = require('mongoose');
 
-module.exports = Horario;
+var schema = mongoose.Schema({
+  this.dia: String,
+  this.hora: String
+});
+
+mongoose.model('Horario', schema);

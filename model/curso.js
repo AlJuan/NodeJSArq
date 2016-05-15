@@ -1,7 +1,18 @@
-function Curso(materia, cuatri, horarios) {
-  this.materia = materia;
-  this.cuatrimestre = cuatri;
-  this.horarios = horarios;
-}
+var mongoose = require('mongoose');
 
-module.exports = Curso;
+var schema = mongoose.Schema({
+  this.materia: {
+    type: Schema.ObjectId,
+    ref: 'Materia'
+  },
+  this.horarios: [{
+    type: Schema.ObjectId,
+    ref: 'Horario'
+  }],
+  this.cuatrimestre: {
+      type: Schema.ObjectId,
+      ref: 'Cuatrimestre'
+  }
+});
+
+mongoose.model('Curso', schema);

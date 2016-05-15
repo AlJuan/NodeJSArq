@@ -1,6 +1,8 @@
-function Materia(descripcion, codigo) {
-  this.descripcion = descripcion;
-  this.codigo = codigo;
-}
+var mongoose = require('mongoose');
 
-module.exports = Materia;
+var schema = mongoose.Schema({
+  this.descripcion: String,
+  this.codigo: String
+});
+
+mongoose.model('Materia', schema);
