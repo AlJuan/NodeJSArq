@@ -5,4 +5,4 @@ var schema = mongoose.Schema({
   anio: Number
 });
 
-mongoose.model('Cuatrimestre', schema);
+module.exports = mongoose.model('Cuatrimestre', schema);

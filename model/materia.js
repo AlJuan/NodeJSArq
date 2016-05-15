@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
-  this.descripcion: String,
-  this.codigo: String
+  descripcion: String,
+  codigo: String
 });
 
-mongoose.model('Materia', schema);
+module.exports = mongoose.model('Materia', schema);
