@@ -1,0 +1,25 @@
+{
+  "name": "nodejsarq",
+  "version": "1.0.0",
+  "description": "TP arq de soft",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlJuan/NodeJSArq.git"
+  },
+  "author": "AlJuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlJuan/NodeJSArq/issues"
+  },
+  "homepage": "https://github.com/AlJuan/NodeJSArq#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^6.2.0"
+  }
+}
