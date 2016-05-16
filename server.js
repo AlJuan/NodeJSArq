@@ -9,10 +9,12 @@ var config = require('./constants/config');
 var mongoose = require('mongoose');
 mongoose.connect(config.DB_URL);
 
-//Server init
+require('./routes/routes')(app);
+
+/********             ********
+********* Server init ********
+*********             ********/
 var server = app.listen(8180, function () {
   var port = server.address().port;
   console.log("Servidor escuchando puerto %s", port);
 })
-
-require('./routes/routes')(app);

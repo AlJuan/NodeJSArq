@@ -15,15 +15,14 @@ function doLogin(req, res){
   }
   Usuario.findOne({nombre: req.body.username}, function(err, result){
     if (err) throw err;
-    if (result.password == req.body.password){
+    if (result && result.password == req.body.password){
       var token = jwt.sign({username: req.body.username}, config.TOKEN_SECRET);
       console.log('%s logueado!', req.body.username);
       res.status(status.STATUS_OK).json(token);
     } else {
-      res.status(status.STATUS_UNAUTHORIZED).send(responseMessages.PASSWD_INVALID);
+      res.status(status.STATUS_UNAUTHORIZED).send(responseMessages.INVALID_CRED);
     }
   });
-
 }
 
 function doRegister(req, res){
@@ -42,6 +41,20 @@ function doRegister(req, res){
   res.status(status.STATUS_OK).json(req.body.username + ' ' + responseMessages.REGISTER_SUCC);
 }
 
+function authenticate(req, res, next){
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  if (token) {
+      jwt.verify(token, config.TOKEN_SECRET, function(err, decoded){
+        if (err) throw err;
+        req.user = decoded;
+        next();
+      });
+  } else {
+    res.status(status.STATUS_UNAUTHORIZED).send(responseMessages.INVALID_CRED);
+  }
+}
+
 
 module.exports.doLogin = doLogin;
 module.exports.doRegister = doRegister;
+module.exports.authenticate = authenticate;
