@@ -2,16 +2,16 @@ var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
   materia: {
-    type: Schema.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'Materia'
   },
   horarios: [{
-    type: Schema.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: 'Horario'
   }],
   cuatrimestre: {
-      type: Schema.ObjectId,
-      ref: 'Cuatrimestre'
+    type: mongoose.Schema.ObjectId,
+    ref: 'Cuatrimestre'
   }
 });
 

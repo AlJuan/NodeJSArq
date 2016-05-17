@@ -4,7 +4,7 @@ var Materia = require('../model/materia');
 
 function doCreate(req, res){
   if (!req.body.nombre || !req.body.codigo){
-    res.status(status.STATUS_BAD_REQUEST).send(responseMessages.MATERIA_REQ);
+    res.status(status.STATUS_BAD_REQUEST).send(responseMessages.MATERIA_REQ_CREATE);
     return;
   }
   Materia.create({
@@ -12,8 +12,8 @@ function doCreate(req, res){
     codigo: req.body.codigo
   }, function(err, materia){
     if (err) throw err;
+    res.status(status.STATUS_OK).send(responseMessages.CREATE_SUCC + ' ' + materia._id);
   });
-  res.status(status.STATUS_OK).send(responseMessages.CREATE_SUCC);
 }
 
 function doList(req, res){
@@ -23,5 +23,17 @@ function doList(req, res){
   });
 }
 
+function doDelete(req, res){
+  if (!req.body.codigo){
+    res.status(status.STATUS_BAD_REQUEST).send(responseMessages.MATERIA_REQ_DELETE);
+    return;
+  }
+  Materia.remove({codigo: req.body.codigo}, function(err){
+    if (err) throw err;
+    res.status(status.STATUS_OK).send(responseMessages.DELETE_SUCC);
+  });
+}
+
 module.exports.doCreate = doCreate;
 module.exports.doList = doList;
+module.exports.doDelete = doDelete;

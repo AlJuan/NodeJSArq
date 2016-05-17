@@ -2,13 +2,25 @@ const USERNAME_REQ = 'username requerido';
 const PASSWD_REQ = 'password requerido';
 const INVALID_CRED = 'credenciales invalidas';
 const REGISTER_SUCC = 'registrado con exito!';
-const MATERIA_REQ = 'faltan datos! materia requiere nombre y codigo';
+const MATERIA_REQ_CREATE = 'faltan datos! materia requiere nombre y codigo';
+const MATERIA_REQ_DELETE = 'faltan datos! materia requiere codigo';
+const HORARIO_REQ_CREATE = 'faltan datos! horario requiere dia y hora';
+const HORARIO_REQ_DELETE = 'faltan datos! horario requiere dia y hora';
+const CUATRIMESTRE_REQ_CREATE = 'faltan datos! cuatrimestre requiere anio y semestre';
+const CUATRIMESTRE_REQ_DELETE = 'faltan datos! cuatrimestre requiere anio y semestre';
+const CURSO_REQ_CREATE = 'faltan datos! curso requiere horariosId, materiaId y cuatrimestreId';
+const CURSO_REQ_DELETE = 'faltan datos! curso requiere id';
 const CREATE_SUCC = 'Se persistio con exito!';
+const DELETE_SUCC = 'Se elimino con exito!';
 module.exports = {
     USERNAME_REQ: USERNAME_REQ,
     PASSWD_REQ: PASSWD_REQ,
     INVALID_CRED: INVALID_CRED,
     REGISTER_SUCC: REGISTER_SUCC,
-    MATERIA_REQ: MATERIA_REQ,
-    CREATE_SUCC: CREATE_SUCC
+    MATERIA_REQ_CREATE: MATERIA_REQ_CREATE,
+    MATERIA_REQ_DELETE: MATERIA_REQ_DELETE,
+    CURSO_REQ_CREATE: CURSO_REQ_CREATE,
+    CURSO_REQ_DELETE: CURSO_REQ_DELETE,
+    CREATE_SUCC: CREATE_SUCC,
+    DELETE_SUCC: DELETE_SUCC
 };
