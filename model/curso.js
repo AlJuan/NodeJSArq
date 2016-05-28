@@ -5,10 +5,8 @@ var schema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Materia'
   },
-  horarios: [{
-    type: mongoose.Schema.ObjectId,
-    ref: 'Horario'
-  }],
+  horario: String,
+  nroDeCurso: Number,
   cuatrimestre: {
     type: mongoose.Schema.ObjectId,
     ref: 'Cuatrimestre'

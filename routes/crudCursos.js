@@ -1,19 +1,20 @@
 var responseMessages = require('../constants/responsemessages');
 var status = require('../constants/status');
 var Curso = require('../model/curso');
+var mongoose = require('mongoose');
 
 function doCreate(req, res){
-  console.log('%j', req.body);
-  if (!req.body.materiaId || !req.body.horariosId || !req.body.cuatrimestreId){
+  if (!req.body.materiaId || !req.body.horario || !req.body.cuatrimestreId){
     res.status(status.STATUS_BAD_REQUEST).send(responseMessages.CURSO_REQ_CREATE);
     return;
   }
-  //TODO NO ESTA GUARDANDO UN ARRAY
-  Curso.create({
-    materia: req.body.materiaId,
-    horariosId: req.body.horariosId,
-    cuatrimestre: req.body.cuatrimestreId
-  }, function(err, curso){
+  var curso = {
+    materia: mongoose.Types.ObjectId(req.body.materiaId),
+    horario: req.body.horario,
+    nroDeCurso: req.body.nroDeCurso,
+    cuatrimestre: mongoose.Types.ObjectId(req.body.cuatrimestreId)
+  };
+  Curso.create(curso, function(err, curso){
     if (err) throw err;
     res.status(status.STATUS_OK).send(responseMessages.CREATE_SUCC + ' ' + curso._id);
   });
@@ -22,7 +23,6 @@ function doCreate(req, res){
 function doList(req, res){
   Curso.find({})
     .populate('materia')
-    .populate('horarios')
     .populate('cuatrimestre')
     .exec(function(err, cursos){
     if (err) throw err;
