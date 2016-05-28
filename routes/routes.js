@@ -1,5 +1,5 @@
 var login = require('./login');
-var materias = require('./crudMaterias');
+var materias = require('./routeMaterias');
 var cuatrimestres = require('./routeCuatrimestre');
 var cursos = require('./routeCursos');
 module.exports = function (app){

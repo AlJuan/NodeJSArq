@@ -3,7 +3,7 @@ var status = require('../constants/status');
 var cursoDAO = require('../data-access/cursoDAO');
 
 function validCreateRequest(materia, horario, cuatrimestre, nroDeCurso){
-    return!(!horario || !materia || !cuatrimestre || !nroDeCurso);
+    return !(!horario || !materia || !cuatrimestre || !nroDeCurso);
 }
 
 function validRemoveRequest(id){
