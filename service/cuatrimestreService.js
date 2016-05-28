@@ -1,6 +1,5 @@
 var responseMessages = require('../constants/responsemessages');
 var status = require('../constants/status');
-var Cuatrimestre = require('../model/cuatrimestre');
 var cuatrimestreDAO = require('../data-access/cuatrimestreDAO');
 
 function validCreateRequest(semestre, anio){

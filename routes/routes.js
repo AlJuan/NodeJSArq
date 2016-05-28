@@ -1,7 +1,7 @@
 var login = require('./login');
 var materias = require('./crudMaterias');
-var cuatrimestres = require('./crudCuatrimestres');
-var cursos = require('./crudCursos');
+var cuatrimestres = require('./routeCuatrimestre');
+var cursos = require('./routeCursos');
 module.exports = function (app){
   app.post('/login', login.doLogin);
   app.post('/register', login.doRegister);
