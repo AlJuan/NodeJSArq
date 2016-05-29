@@ -6,6 +6,7 @@ function doLogin(req, res){
     if (err) throw err;
     if (stat == status.STATUS_OK){
       res.status(stat).json(msg);
+      console.log("routeLogin -> usuario logueado!");
     } else {
       res.status(stat).send(msg);
     }
@@ -17,6 +18,7 @@ function doRegister(req, res){
     if (err) throw err;
     if (stat == status.STATUS_OK){
       res.status(stat).json(msg);
+      console.log("routeLogin -> usuario registrado!");
     } else {
       res.status(stat).send(msg);
     }

@@ -1,6 +1,7 @@
 var responseMessages = require('../constants/responsemessages');
 var status = require('../constants/status');
 var cursoDAO = require('../data-access/cursoDAO');
+var cuatrimestreService = require('./cuatrimestreService');
 
 function validCreateRequest(materia, horario, cuatrimestre, nroDeCurso){
     return !(!horario || !materia || !cuatrimestre || !nroDeCurso);
@@ -20,6 +21,11 @@ function find(callback){
   cursoDAO.find(callback);
 }
 
+function findThisSemesterCourses(callback){
+  var cuatri = cuatrimestreService.getActualCuatrimestre();
+  cursoDAO.findByCuatrimestre(cuatri, callback);
+}
+
 function remove(id, callback){
   if (!validRemoveRequest(id))
     return callback(null, status.STATUS_BAD_REQUEST, responseMessages.CURSO_REQ_DELETE);
@@ -29,3 +35,4 @@ function remove(id, callback){
 module.exports.create = create;
 module.exports.find = find;
 module.exports.remove = remove;
+module.exports.findThisSemesterCourses = findThisSemesterCourses;

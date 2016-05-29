@@ -17,6 +17,13 @@ function find(callback){
   });
 }
 
+function findByFilter(cuatrimestre, callback){
+  Cuatrimestre.findOne({
+    semestre: cuatrimestre.semestre,
+    anio: cuatrimestre.anio
+  }, callback);
+}
+
 function remove(semestre, anio, callback){
   Cuatrimestre.remove({
     semestre: semestre,
@@ -30,3 +37,4 @@ function remove(semestre, anio, callback){
 module.exports.create = create;
 module.exports.find = find;
 module.exports.remove = remove;
+module.exports.findByFilter = findByFilter;

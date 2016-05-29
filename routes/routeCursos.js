@@ -12,6 +12,7 @@ function doCreate(req, res){
                       function(err, status, msg){
                         if (err) throw err;
                         res.status(status).send(msg);
+                        console.log("routeCursos -> curso creado!");
                       });
 }
 
@@ -19,6 +20,7 @@ function doList(req, res){
   cursoService.find(function(err, status, cursos){
     if (err) throw err;
     res.status(status).json(cursos);
+    console.log("routeCursos -> cursos listados!");
   });
 }
 
@@ -26,9 +28,19 @@ function doDelete(req, res){
   cursoService.remove(req.params.id, function(err, status, msg){
     if (err) throw err;
     res.status(status).send(msg);
+    console.log("routeCursos -> cursos eliminados!");
+  });
+}
+
+function doListSemester(req, res){
+  cursoService.findThisSemesterCourses(function (err, stat, msg){
+    if (err) throw err;
+    res.status(stat).json(msg);
+    console.log("routeCursos -> cursos de este cuatrimestre listados!");
   });
 }
 
 module.exports.doCreate = doCreate;
 module.exports.doList = doList;
 module.exports.doDelete = doDelete;
+module.exports.doListSemester = doListSemester;

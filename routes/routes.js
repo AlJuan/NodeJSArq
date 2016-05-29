@@ -14,4 +14,5 @@ module.exports = function (app){
   app.get('/cursos', cursos.doList);
   app.post('/cursos', login.authenticate,  cursos.doCreate);
   app.delete('/cursos/:id', login.authenticate,  cursos.doDelete);
+  app.get('/cursosCuatrimestreActual', cursos.doListSemester);
 }
