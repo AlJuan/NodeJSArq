@@ -28,6 +28,7 @@ function findByCuatrimestre(cuatrimestre, callback){
     if (err) throw err;
     Curso.find({cuatrimestre: cuatri.id})
       .populate('materia')
+      .populate('cuatrimestre')
       .exec(function(err, cursos){
         callback(err, status.STATUS_OK, cursos);
     });
