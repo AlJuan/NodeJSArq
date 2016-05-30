@@ -34,7 +34,9 @@ function register(username, pass, callback){
     if (!username) return callback(null, status.STATUS_BAD_REQUEST, responseMessages.USERNAME_REQ);
     else return callback(null, status.STATUS_BAD_REQUEST, responseMessages.PASSWD_REQ);
   }
-  usuarioDAO.save(username, pass, callback);
+  usuarioDAO.save(username, pass, function(err){
+    callback(err, status.STATUS_OK, username + ' ' + responseMessages.REGISTER_SUCC);
+  });
 }
 
 function authenticate(token, callback) {
@@ -42,7 +44,7 @@ function authenticate(token, callback) {
     jwt.verify(token, config.TOKEN_SECRET, function(err, decoded){
       if (err)
         callback(err, status.STATUS_UNAUTHORIZED, responseMessages.INVALID_CRED);
-      callback(err, status.STATUS_OK, decoded);
+      callback(err, status.STATUS_OK, decoded.username);
     });
   } else {
     callback(null, status.STATUS_UNAUTHORIZED, responseMessages.INVALID_CRED);

@@ -2,6 +2,7 @@ var login = require('./routeLogin');
 var materias = require('./routeMaterias');
 var cuatrimestres = require('./routeCuatrimestre');
 var cursos = require('./routeCursos');
+var inscripciones = require('./routeInscripciones');
 module.exports = function (app){
   app.post('/login', login.doLogin);
   app.post('/register', login.doRegister);
@@ -15,4 +16,6 @@ module.exports = function (app){
   app.post('/cursos', login.authenticate,  cursos.doCreate);
   app.delete('/cursos/:id', login.authenticate,  cursos.doDelete);
   app.get('/cursosCuatrimestreActual', cursos.doListSemester);
+  app.post('/inscripcion/:codigo/:nroCurso', login.authenticate,  inscripciones.doInscribirse);
+  app.get('/inscripcion', login.authenticate, inscripciones.doList);
 }

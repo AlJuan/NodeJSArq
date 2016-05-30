@@ -10,18 +10,24 @@ function validCreateRequest(semestre, anio){
 function create(semestre, anio, callback){
   if (!validCreateRequest(semestre, anio))
     return callback(null, status.STATUS_BAD_REQUEST, responseMessages.CUATRIMESTRE_REQ_CREATE);
-  cuatrimestreDAO.create(semestre, anio, callback);
+  cuatrimestreDAO.create(semestre, anio, function(err, cuatrimestre){
+    callback(err, status.STATUS_OK, responseMessages.CREATE_SUCC + ' ' + cuatrimestre._id)
+  });
 
 }
 
 function find(callback){
-  cuatrimestreDAO.find(callback);
+  cuatrimestreDAO.find(function(err, cuatrimestres){
+    callback(err, status.STATUS_OK, cuatrimestres);
+  });
 }
 
 function remove(semestre, anio, callback){
   if (!validCreateRequest(semestre, anio))
     return callback(null, status.STATUS_BAD_REQUEST, responseMessages.CUATRIMESTRE_REQ_DELETE);
-  cuatrimestreDAO.remove(semestre, anio, callback);
+  cuatrimestreDAO.remove(semestre, anio, function(err){
+    callback(err, status.STATUS_OK, responseMessages.DELETE_SUCC);
+  });
 }
 
 function getActualCuatrimestre(){

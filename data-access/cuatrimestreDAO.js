@@ -1,20 +1,14 @@
-var responseMessages = require('../constants/responsemessages');
-var status = require('../constants/status');
 var Cuatrimestre = require('../model/cuatrimestre');
 
 function create(semestre, anio, callback){
   Cuatrimestre.create({
     semestre: semestre,
     anio: anio
-  }, function(err, cuatrimestre){
-    callback(err, status.STATUS_OK, responseMessages.CREATE_SUCC + ' ' + cuatrimestre._id)
-  });
+  }, callback);
 }
 
 function find(callback){
-  Cuatrimestre.find({}, function(err, cuatrimestres){
-    callback(err, status.STATUS_OK, cuatrimestres);
-  });
+  Cuatrimestre.find({}, callback);
 }
 
 function findByFilter(cuatrimestre, callback){
@@ -28,9 +22,7 @@ function remove(semestre, anio, callback){
   Cuatrimestre.remove({
     semestre: semestre,
     anio: anio
-  }, function(err){
-    callback(err, status.STATUS_OK, responseMessages.DELETE_SUCC);
-  });
+  },callback);
 }
 
 

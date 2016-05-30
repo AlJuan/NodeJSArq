@@ -1,20 +1,20 @@
-var responseMessages = require('../constants/responsemessages');
-var status = require('../constants/status');
 var Usuario = require('../model/usuario');
 
 function find(username, callback){
-  Usuario.findOne({nombre: username}, function(err, user){
-    callback(err, user);
-  });
+  Usuario.findOne({nombre: username}).populate('cursos').exec(callback);
 }
 
 function save(username, pass, callback){
   var nuevoUsuario = new Usuario({nombre: username, password: pass});
-  nuevoUsuario.save(function(err){
-    if (err) throw err;
-    callback(err, status.STATUS_OK, username + ' ' + responseMessages.REGISTER_SUCC)
-  });
+  nuevoUsuario.save(callback);
+}
+
+function addCurso(username, curso, callback){
+  Usuario.findOneAndUpdate({nomre: username}, {$push: {cursos: curso}}, {safe: true},
+  callback);
+
 }
 
 module.exports.find = find;
 module.exports.save = save;
+module.exports.addCurso = addCurso;

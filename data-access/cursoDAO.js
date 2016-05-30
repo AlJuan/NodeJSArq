@@ -1,5 +1,3 @@
-var responseMessages = require('../constants/responsemessages');
-var status = require('../constants/status');
 var Curso = require('../model/curso');
 var cuatrimestreDAO = require('./cuatrimestreDAO');
 
@@ -9,17 +7,24 @@ function create(materiaId, horario, cuatrimestreId, nroDeCurso, callback){
     horario: horario,
     nroDeCurso: nroDeCurso,
     cuatrimestre: cuatrimestreId
-  }, function(err, curso){
-    callback(err, status.STATUS_OK, responseMessages.CREATE_SUCC + ' ' + curso._id)
-  });
+  }, callback);
 }
 
 function find(callback){
   Curso.find({})
     .populate('materia')
     .populate('cuatrimestre')
+    .exec(callback);
+}
+
+function findByMateriaAndNro(materia, nro, callback){
+  Curso.find({
+    materia: materia._id,
+    nroDeCurso: nro
+  }).populate('materia')
+    .populate('cuatrimestre')
     .exec(function(err, cursos){
-      callback(err, status.STATUS_OK, cursos);
+      callback(err, cursos);
   });
 }
 
@@ -36,12 +41,11 @@ function findByCuatrimestre(cuatrimestre, callback){
 }
 
 function remove(id, callback){
-  Curso.remove({_id: id}, function(err){
-    callback(err, status.STATUS_OK, responseMessages.DELETE_SUCC);
-  });
+  Curso.remove({_id: id}, callback);
 }
 
 module.exports.create = create;
 module.exports.find = find;
 module.exports.remove = remove;
 module.exports.findByCuatrimestre = findByCuatrimestre;
+module.exports.findByMateriaAndNro = findByMateriaAndNro;
