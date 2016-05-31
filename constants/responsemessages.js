@@ -11,6 +11,8 @@ const CURSO_REQ_DELETE = 'faltan datos! curso requiere id';
 const CREATE_SUCC = 'Se persistio con exito!';
 const DELETE_SUCC = 'Se elimino con exito!';
 const INSCRI_SUCC = 'Se inscribio con exito!';
+const DESINSCRI_SUCC = 'Se desinscribio con exito!';
+const INSCRIP_MAX_SUPERADO = 'Este usuario esta inscripto en 7 materias, no puede inscribirse a mas!';
 
 module.exports = {
     USERNAME_REQ: USERNAME_REQ,
@@ -25,5 +27,7 @@ module.exports = {
     CURSO_REQ_DELETE: CURSO_REQ_DELETE,
     CREATE_SUCC: CREATE_SUCC,
     DELETE_SUCC: DELETE_SUCC,
-    INSCRI_SUCC: INSCRI_SUCC
+    INSCRI_SUCC: INSCRI_SUCC,
+    INSCRIP_MAX_SUPERADO: INSCRIP_MAX_SUPERADO,
+    DESINSCRI_SUCC: DESINSCRI_SUCC
 };

@@ -8,6 +8,14 @@ function doInscribirse(req, res){
   });
 }
 
+function doDesinscribirse(req, res){
+  inscripcionesService.desinscribirse(req.params.codigo, req.params.nroCurso, req.user, function(err, status, msg){
+    if (err) throw err;
+    res.status(status).send(msg);
+    console.log("routeInscripciones -> desinscripcion realizada!");
+  });
+}
+
 function doList(req, res){
   inscripcionesService.list(req.user, function(err, status, msg){
     if (err) throw err;
@@ -18,4 +26,5 @@ function doList(req, res){
 }
 
 module.exports.doInscribirse = doInscribirse;
+module.exports.doDesinscribirse = doDesinscribirse;
 module.exports.doList = doList;

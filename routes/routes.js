@@ -17,5 +17,6 @@ module.exports = function (app){
   app.delete('/cursos/:id', login.authenticate,  cursos.doDelete);
   app.get('/cursosCuatrimestreActual', cursos.doListSemester);
   app.post('/inscripcion/:codigo/:nroCurso', login.authenticate,  inscripciones.doInscribirse);
+  app.post('/desinscripcion/:codigo/:nroCurso', login.authenticate,  inscripciones.doDesinscribirse);
   app.get('/inscripcion', login.authenticate, inscripciones.doList);
 }

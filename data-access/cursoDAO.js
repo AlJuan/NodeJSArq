@@ -18,7 +18,7 @@ function find(callback){
 }
 
 function findByMateriaAndNro(materia, nro, callback){
-  Curso.find({
+  Curso.findOne({
     materia: materia._id,
     nroDeCurso: nro
   }).populate('materia')
