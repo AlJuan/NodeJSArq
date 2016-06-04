@@ -27,7 +27,9 @@ function find(callback){
 
 function findThisSemesterCourses(callback){
   var cuatri = cuatrimestreService.getActualCuatrimestre();
-  cursoDAO.findByCuatrimestre(cuatri, callback);
+  cursoDAO.findByCuatrimestre(cuatri, function(err, cursos){
+    callback(err, status.STATUS_OK, cursos);
+  });
 }
 
 function remove(id, callback){
